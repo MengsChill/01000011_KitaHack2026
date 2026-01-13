@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | SmartStick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="material-icons-round">visibility</span> <span>SmartStick</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link active"><span class="material-icons-round">dashboard</span><span>Dashboard</span></a></li>
+            <li><a href="tracking.html" class="nav-link"><span class="material-icons-round">map</span><span>Live Tracking</span></a></li>
+            <li><a href="logs.html" class="nav-link"><span class="material-icons-round">history</span><span>Hazard Logs</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="material-icons-round">settings</span><span>Settings</span></a></li>
+        </ul>
+        <div class="user-profile">
+            <div class="avatar"></div>
+            <div class="user-info"><h4>Jane Doe</h4><p>Caretaker</p></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Overview</h1>
+            <div style="background: #e6f4ea; color: #34A853; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
+                ● Stick Online
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card" style="grid-column: span 4; background: linear-gradient(135deg, #4285F4, #357ae8); color: white;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <span class="material-icons-round">auto_awesome</span> 
+                    <strong>GEMINI AI ANALYSIS</strong>
+                </div>
+                <p style="font-size: 1.2rem; margin-bottom: 15px;">"Current weather is rainy. I recommend switching the stick to 'High Sensitivity' mode to detect slippery tiles."</p>
+                <a href="settings.html" class="btn" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; display: inline-block;">Go to Settings</a>
+            </div>
+
+            <div class="card">
+                <div style="color: #6b7280;">HAZARDS TODAY</div>
+                <div style="font-size: 2rem; font-weight: 700;">12</div>
+            </div>
+            <div class="card">
+                <div style="color: #6b7280;">SAFETY SCORE</div>
+                <div style="font-size: 2rem; font-weight: 700; color: #34A853;">98%</div>
+            </div>
+             <div class="card" style="grid-column: span 2; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <h3>Emergency Contact</h3>
+                    <p style="color: #666;">Press to alert family immediately.</p>
+                </div>
+                <button class="btn btn-danger" onclick="alert('SOS Signal Sent via Firebase Cloud Messaging!')">SEND SOS</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

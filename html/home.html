@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStick 2026 | The Future of Mobility</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+<style>
+    /* --- CORE STYLES --- */
+    :root {
+        --neon-blue: #00f3ff;
+        --bg-dark: #050505;
+        --text-gray: #a0a0a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background-color: var(--bg-dark);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+    }
+
+    h1, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
+
+    /* --- THE FLOATING IMAGE CONTAINER --- */
+    #stick-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* These control the size of the stick on screen */
+        width: 600px; 
+        height: auto; 
+        
+        /* Center pivot for rotation */
+        transform-origin: center center;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        transition: transform 0.1s linear; /* Smooth motion */
+        
+        /* No background colors - let the image shine! */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* THE IMAGE ITSELF */
+    #stick-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* This adds a cool blue glow BEHIND your image */
+        filter: drop-shadow(0 0 30px rgba(0, 243, 255, 0.4));
+    }
+
+    /* --- SCROLL SECTIONS --- */
+    section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 50px;
+        position: relative;
+        z-index: 5; 
+    }
+
+    .content-box {
+        max-width: 500px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+    
+    .content-box.visible { opacity: 1; transform: translateY(0); }
+    .highlight { color: var(--neon-blue); }
+
+    /* Alignments */
+    #sec-1 { align-items: center; text-align: center; }
+    #sec-2 { align-items: flex-start; margin-left: 10%; }
+    #sec-3 { align-items: flex-end; margin-right: 10%; text-align: right; }
+    #sec-4 { align-items: center; text-align: center; }
+
+    .cta-btn {
+        margin-top: 30px; padding: 15px 40px;
+        background: transparent; border: 2px solid var(--neon-blue);
+        color: var(--neon-blue); font-family: 'Orbitron';
+        text-decoration: none; display: inline-block; transition: 0.3s;
+    }
+    .cta-btn:hover { background: var(--neon-blue); color: black; box-shadow: 0 0 30px var(--neon-blue); }
+
+    /* HUD Background Lines */
+    .hud-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none; z-index: 2;
+        background: 
+            linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+</style>
+
+<body>
+
+    <div class="hud-overlay"></div>
+
+    <div id="stick-container">
+        <img src="stick.png" id="stick-img" alt="Smart Stick Prototype">
+    </div>
+
+    <section id="sec-1">
+        <div class="content-box visible">
+            <h1 style="font-size: 4rem; margin-bottom: 20px;">SMART<span class="highlight">STICK</span></h1>
+            <p style="font-size: 1.2rem; color: var(--text-gray);">VISION BEYOND SIGHT.</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">SCROLL DOWN</p>
+        </div>
+    </section>
+
+    <section id="sec-2">
+        <div class="content-box">
+            <h2>01. ADAPTIVE <span class="highlight">WHEELS</span></h2>
+            <p>Omni-directional movement allows for <br>seamless navigation on rough terrain.</p>
+        </div>
+    </section>
+
+    <section id="sec-3">
+        <div class="content-box">
+            <h2>02. AI <span class="highlight">VISION</span></h2>
+            <p>The integrated camera analyzes hazards <br>in real-time using Gemini Pro.</p>
+        </div>
+    </section>
+
+    <section id="sec-4">
+        <div class="content-box">
+            <h2>READY TO <span class="highlight">CHANGE LIVES?</span></h2>
+            <a href="dashboard.html" class="cta-btn">ENTER DASHBOARD</a>
+        </div>
+    </section>
+
+    <script>
+        const stick = document.getElementById('stick-container');
+        const contentBoxes = document.querySelectorAll('.content-box');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const height = window.innerHeight;
+            const progress = scrollY / height;
+
+            // ANIMATION LOGIC
+            let rotation = 0;
+            let scale = 1;
+            let translateX = -50;
+            let translateY = -50;
+
+            if (progress < 1) {
+                // Rotate 45 deg and move Right
+                rotation = progress * 45; 
+                translateX = -50 + (progress * 30); 
+                scale = 1 - (progress * 0.1); 
+            } 
+            else if (progress >= 1 && progress < 2) {
+                // Rotate to -45 deg and move Left
+                const p = progress - 1;
+                rotation = 45 - (p * 90); // Goes from 45 to -45
+                translateX = -20 - (p * 60); 
+                scale = 0.9 + (p * 0.2); 
+            } 
+            else if (progress >= 2) {
+                // Center and Zoom
+                const p = progress - 2;
+                rotation = -45 + (p * 45); // Back to 0
+                translateX = -80 + (p * 30); 
+                scale = 1.1 + (p * 1.5); 
+            }
+
+            stick.style.transform = `translate(${translateX}%, ${translateY}%) rotate(${rotation}deg) scale(${scale})`;
+
+            // Fade Text
+            contentBoxes.forEach(box => {
+                if (box.getBoundingClientRect().top < height * 0.8) {
+                    box.classList.add('visible');
+                } else {
+                    box.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

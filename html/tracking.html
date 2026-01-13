@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Tracking | SmartStick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .map-container {
+            width: 100%;
+            height: 600px;
+            background-color: #e5e7eb;
+            border-radius: 12px;
+            position: relative;
+            background-image: url('https://mt1.google.com/vt/lyrs=m&x=1325&y=3143&z=13');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .live-marker {
+            width: 25px; height: 25px;
+            background: #4285F4; border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(66, 133, 244, 0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.6); }
+            100% { box-shadow: 0 0 0 20px rgba(66, 133, 244, 0); }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand"><span class="material-icons-round">visibility</span> <span>SmartStick</span></div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="material-icons-round">dashboard</span><span>Dashboard</span></a></li>
+            <li><a href="tracking.html" class="nav-link active"><span class="material-icons-round">map</span><span>Live Tracking</span></a></li>
+            <li><a href="logs.html" class="nav-link"><span class="material-icons-round">history</span><span>Hazard Logs</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="material-icons-round">settings</span><span>Settings</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Live Tracking</h1>
+            <button class="btn btn-primary" onclick="alert('Google Routes API: Calculating path home...')">Navigate Home</button>
+        </div>
+        
+        <div class="card">
+            <div class="map-container">
+                <div class="live-marker"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <strong>Current Location:</strong><br>
+                    Jalan Universiti, KL (Moving at 3km/h)
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

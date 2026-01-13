@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hazard Logs | SmartStick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: left; padding: 15px; color: #6b7280; border-bottom: 2px solid #eee; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        .tag { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .tag-danger { background: #fee2e2; color: #dc2626; }
+        .tag-warning { background: #fef3c7; color: #d97706; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand"><span class="material-icons-round">visibility</span> <span>SmartStick</span></div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="nav-link"><span class="material-icons-round">dashboard</span><span>Dashboard</span></a></li>
+            <li><a href="tracking.html" class="nav-link"><span class="material-icons-round">map</span><span>Live Tracking</span></a></li>
+            <li><a href="logs.html" class="nav-link active"><span class="material-icons-round">history</span><span>Hazard Logs</span></a></li>
+            <li><a href="settings.html" class="nav-link"><span class="material-icons-round">settings</span><span>Settings</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Hazard History</h1>
+            <button class="btn btn-primary">Export to CSV</button>
+        </div>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Object Detected (By Gemini)</th>
+                        <th>Location</th>
+                        <th>Severity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:45 AM</td>
+                        <td>Open Manhole</td>
+                        <td>Jalan Tun Razak</td>
+                        <td><span class="tag tag-danger">HIGH DANGER</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:42 AM</td>
+                        <td>Stray Dog</td>
+                        <td>Jalan Tun Razak</td>
+                        <td><span class="tag tag-warning">WARNING</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:30 AM</td>
+                        <td>Construction Barrier</td>
+                        <td>KLCC Park Entrance</td>
+                        <td><span class="tag tag-danger">HIGH DANGER</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

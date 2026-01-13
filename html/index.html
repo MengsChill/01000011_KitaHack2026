@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStick 2026 | Chameleon Interface</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. DYNAMIC THEME ENGINE --- */
+        :root {
+            /* Initial Colors (Blue Theme) */
+            --primary-hue: 180; /* Cyan */
+            --neon-color: hsl(var(--primary-hue), 100%, 50%);
+            --bg-dark: #020205;
+            --glass-bg: rgba(10, 10, 15, 0.85);
+        }
+
+        /* Smoothly transition colors when they change */
+        * { transition: color 0.5s ease, border-color 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease; }
+        
+        /* Exception: Don't lag the transform animations */
+        #stick-assembly, .wheel-rim, .content-box { transition: transform 0.1s linear, opacity 0.5s ease; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: pointer; /* Cool gaming cursor */
+        }
+
+        /* --- 2. INTERACTIVE MOUSE SPOTLIGHT --- */
+        #cursor-light {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 2;
+            /* A radial gradient that follows the mouse (controlled by JS) */
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(var(--primary-hue), 255, 255, 0.03),
+                transparent 40%
+            );
+            mix-blend-mode: screen;
+        }
+
+        /* --- 3. BACKGROUND LAYERS --- */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+        }
+
+        #particle-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;
+        }
+
+        /* --- 4. NAVIGATION --- */
+        .top-nav {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+            background: var(--glass-bg); border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-family: 'Orbitron'; font-weight: 700; color: white; text-decoration: none; letter-spacing: 2px; }
+        .nav-btn {
+            padding: 8px 25px; border: 1px solid var(--neon-color); color: var(--neon-color);
+            font-family: 'Orbitron'; text-decoration: none; font-size: 0.8rem;
+            transition: all 0.3s;
+            cursor: pointer; /* Ensure clickable */
+        }
+        .nav-btn:hover { background: var(--neon-color); color: black; box-shadow: 0 0 20px var(--neon-color); }
+
+        /* --- 5. THE TRANSFORMING STICK --- */
+        
+        @keyframes slowBlinkEffect {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; } 
+        }
+
+        #stick-assembly {
+            position: fixed; top: 50%; left: 50%; width: 50px; height: 500px;
+            z-index: 10; will-change: transform; transform: translate(-50%, -50%);
+            animation: slowBlinkEffect 4s infinite ease-in-out; 
+            /* Added transition for the structure view animation */
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        /* --- NEW: STRUCTURE VIEW CSS --- */
+        /* This forces the stick upright and zoomed in when 'structure-mode' is active */
+        #stick-assembly.structure-mode {
+            transform: translate(-50%, -50%) rotate(0deg) scale(1.1) !important;
+        }
+
+        /* Animation for the Handle moving UP */
+        #stick-assembly.structure-mode .handle {
+            transform: translateY(-80px) skewX(-10deg); /* Move up and keep skew */
+            border-color: var(--neon-color); /* Highlight borders */
+            transition: transform 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Animation for the Wheels moving DOWN */
+        #stick-assembly.structure-mode .wheel-base {
+            bottom: -80px; /* Move down */
+            border-color: var(--neon-color);
+            transition: bottom 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Animation for the Shaft separating */
+        #stick-assembly.structure-mode .shaft {
+            box-shadow: 0 0 50px var(--neon-color); /* Glow stronger */
+            transition: box-shadow 0.5s ease;
+        }
+
+        /* LABELS (Hidden by default, Visible in Structure Mode) */
+        .part-label {
+            position: absolute;
+            left: 100%; 
+            margin-left: 40px; /* Distance from stick */
+            color: var(--neon-color);
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+            transform: translateX(-20px);
+            text-shadow: 0 0 5px black;
+            display: flex;
+            align-items: center;
+        }
+
+        /* The connecting line */
+        .part-label::before {
+            content: '';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: var(--neon-color);
+            margin-right: 10px;
+        }
+
+        /* Show labels when active */
+        #stick-assembly.structure-mode .part-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* --- END NEW CSS --- */
+
+
+        .shaft {
+            position: absolute; top: 0; left: 0; width: 100%; height: 85%;
+            background: linear-gradient(90deg, #ddd, #999 40%, #bbb 60%, #fff);
+            border-radius: 10px; overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .neon-strip {
+            position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 60%; background-color: var(--neon-color);
+            box-shadow: 0 0 20px var(--neon-color);
+        }
+        .handle {
+            position: absolute; top: -40px; left: -20px; width: 60px; height: 60px;
+            border: 8px solid #222; border-left: 8px solid #444;
+            border-radius: 20px 20px 0 20px; transform: skewX(-10deg);
+            transition: transform 0.5s ease; /* Smooth return */
+        }
+        .wheel-base {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 80px; background: #111; border-radius: 50%; border: 2px solid #333;
+            transition: bottom 0.5s ease; /* Smooth return */
+        }
+        .wheel-rim {
+            width: 100%; height: 100%; border: 2px dashed var(--neon-color); border-radius: 50%;
+        }
+
+        /* --- 6. LONG CONTENT SECTIONS --- */
+        section {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 50px; position: relative; z-index: 5; pointer-events: none;
+        }
+        section a { pointer-events: all; }
+
+        .content-box {
+            max-width: 450px; opacity: 0; transform: translateY(50px);
+            background: rgba(0, 0, 0, 0.7); padding: 40px; 
+            border-left: 4px solid var(--neon-color);
+            backdrop-filter: blur(5px);
+        }
+        .content-box.visible { opacity: 1; transform: translateY(0); }
+
+        h1 { font-family: 'Orbitron'; font-size: 4rem; margin-bottom: 20px; line-height: 1; }
+        h2 { font-family: 'Orbitron'; color: #666; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 2px; }
+        h3 { font-family: 'Orbitron'; font-size: 2rem; color: white; margin-bottom: 15px; }
+        p { color: #bbb; line-height: 1.6; font-size: 1.1rem; }
+        .highlight { color: var(--neon-color); }
+
+        /* Specific Alignments for variety */
+        #sec-1 { align-items: center; text-align: center; } 
+        #sec-1 .content-box { background: none; border: none; } 
+        #sec-2 { align-items: flex-start; margin-left: 10%; } 
+        #sec-3 { align-items: flex-end; margin-right: 10%; text-align: right; } 
+        #sec-3 .content-box { border-left: none; border-right: 4px solid var(--neon-color); }
+        #sec-4 { align-items: flex-start; margin-left: 10%; }
+        #sec-5 { align-items: flex-end; margin-right: 10%; text-align: right; }
+        #sec-5 .content-box { border-left: none; border-right: 4px solid var(--neon-color); }
+        #sec-6 { align-items: center; text-align: center; } 
+        #sec-6 .content-box { border: 1px solid var(--neon-color); }
+
+    </style>
+</head>
+<body>
+
+    <div id="cursor-light"></div>
+    <div class="bg-grid"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <nav class="top-nav">
+        <a href="#" class="logo">SMART<span class="highlight">STICK</span></a>
+        <div>
+            <button id="structure-btn" class="nav-btn" style="margin-right: 15px;">VIEW STRUCTURE</button>
+            <a href="dashboard.html" class="nav-btn">LAUNCH DASHBOARD</a>
+        </div>
+    </nav>
+
+    <div id="stick-assembly">
+        <div class="handle">
+            <div class="part-label" style="top: 20px;">HAPTIC FEEDBACK UNIT</div>
+        </div>
+        <div class="shaft">
+            <div class="neon-strip"></div>
+            <div class="part-label" style="top: 20%; left: 110%;">GEMINI AI VISION</div>
+            <div class="part-label" style="top: 70%; left: 110%;">LI-ION BATTERY</div>
+        </div>
+        <div class="wheel-base">
+            <div class="wheel-rim"></div>
+            <div class="part-label" style="top: 40%;">OMNI-DRIVE MOTORS</div>
+        </div>
+    </div>
+
+    <section id="sec-1">
+        <div class="content-box visible">
+            <h1>NEURAL<br><span class="highlight">NAVIGATION</span></h1>
+            <p>SCROLL TO BEGIN INITIALIZATION</p>
+        </div>
+    </section>
+
+    <section id="sec-2">
+        <div class="content-box">
+            <h2>SYSTEM CHECK // 01</h2>
+            <h3>OMNI WHEELS</h3>
+            <p>Active suspension adapts to <strong>rough terrain</strong> instantly. <br>Glides over gravel, grass, and pavement.</p>
+        </div>
+    </section>
+
+    <section id="sec-3">
+        <div class="content-box">
+            <h2>SYSTEM CHECK // 02</h2>
+            <h3>GEMINI VISION</h3>
+            <p>Our camera identifies objects in <span class="highlight">real-time</span>. <br>"Stairs detected. Slowing down."</p>
+        </div>
+    </section>
+
+    <section id="sec-4">
+        <div class="content-box">
+            <h2>SYSTEM CHECK // 03</h2>
+            <h3>HAZARD DETECTION</h3>
+            <p>Vibration feedback alerts users of dangerous <span class="highlight">drop-offs</span> or oncoming traffic.</p>
+        </div>
+    </section>
+
+    <section id="sec-5">
+        <div class="content-box">
+            <h2>SYSTEM CHECK // 04</h2>
+            <h3>PATH FINDING</h3>
+            <p>Google Maps integration finds the <span class="highlight">safest route</span>, avoiding construction zones.</p>
+        </div>
+    </section>
+
+    <section id="sec-6">
+        <div class="content-box">
+            <h3>SYSTEM READY</h3>
+            <p>JOIN THE REVOLUTION.</p>
+            <br>
+            <a href="dashboard.html" class="nav-btn">ENTER DASHBOARD</a>
+        </div>
+    </section>
+
+    <script>
+        // --- 1. MOUSE TRACKING SPOTLIGHT ---
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            // Update CSS variables for the flashlight effect
+            document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        // --- 2. PARTICLE ENGINE (With Mouse Fear) ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: -1000, y: -1000 }; // Init off screen
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                // Normal movement
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Mouse Interaction (Push away)
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist < 150) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (150 - dist) / 150;
+                    const push = force * 2; // Strength of push
+                    this.x += Math.cos(angle) * push;
+                    this.y += Math.sin(angle) * push;
+                }
+
+                // Loop edges
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+            draw() {
+                // Use the CSS variable for color so particles change with theme!
+                const neonColor = getComputedStyle(document.documentElement).getPropertyValue('--neon-color').trim();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = neonColor;
+                ctx.globalAlpha = 0.6;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'lighter'; // Glow effect
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+
+        // --- 3. SCROLL ANIMATION & THEME CHANGER ---
+        const stick = document.getElementById('stick-assembly');
+        const wheel = document.querySelector('.wheel-rim');
+        const contentBoxes = document.querySelectorAll('.content-box');
+        const root = document.documentElement;
+        
+        // NEW: Structure Button Logic
+        const structureBtn = document.getElementById('structure-btn');
+        let isStructureMode = false;
+
+        structureBtn.addEventListener('click', () => {
+            isStructureMode = !isStructureMode;
+            stick.classList.toggle('structure-mode');
+            structureBtn.innerText = isStructureMode ? "CLOSE STRUCTURE" : "VIEW STRUCTURE";
+            
+            // Re-trigger scroll logic immediately to reset transform if closing
+            if(!isStructureMode) updateScrollLogic();
+        });
+
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    // Only run scroll animation if NOT in structure mode
+                    if (!isStructureMode) {
+                        updateScrollLogic();
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        function updateScrollLogic() {
+            // Prevent scroll logic from overriding the Structure View transform
+            if (isStructureMode) return;
+
+            const scrollY = window.scrollY;
+            const height = window.innerHeight;
+            const totalHeight = document.body.scrollHeight - height;
+            const progress = scrollY / height; // 0, 1, 2, 3, 4...
+            const globalProgress = scrollY / totalHeight; // 0.0 to 1.0
+
+            // A. CHANGE COLOR THEME BASED ON SECTION
+            let hue = 180; // Default Cyan
+            
+            if (progress < 1) hue = 180; // Blue
+            else if (progress >= 1 && progress < 2) hue = 280; // Purple
+            else if (progress >= 2 && progress < 3) hue = 320; // Pink
+            else if (progress >= 3 && progress < 4) hue = 30;  // Orange
+            else if (progress >= 4) hue = 120; // Green
+
+            // Apply Theme
+            root.style.setProperty('--primary-hue', hue);
+            root.style.setProperty('--neon-color', `hsl(${hue}, 100%, 50%)`);
+
+
+            // B. ANIMATE STICK (Complex Choreography)
+            let r=0, x=-50, y=-50, s=1;
+
+            if (progress < 1) { // Intro
+                r = progress * 45; x = -50 + (progress*30); s = 1 - (progress*0.1);
+            } 
+            else if (progress < 2) { // To Purple
+                const p = progress - 1;
+                r = 45 + (p * 45); // to 90
+                x = -20 - (p * 60); // Move Left
+                s = 0.9;
+            }
+            else if (progress < 3) { // To Pink
+                const p = progress - 2;
+                r = 90 + (p * 90); // to 180 (Inverted)
+                x = -80 + (p * 80); // Back to Center
+                s = 0.9 + (p * 0.2);
+            }
+            else if (progress < 4) { // To Orange
+                const p = progress - 3;
+                r = 180 + (p * 90); // to 270
+                x = 0 - (p * 30); // Move Right slightly
+                s = 1.1;
+            }
+            else { // To Green (End)
+                const p = progress - 4;
+                r = 270 + (p * 90); // to 360 (Reset)
+                x = -30 - (p * 20); // Center
+                s = 1.1 + (p * 0.5); // Zoom
+            }
+
+            stick.style.transform = `translate3d(${x}%, ${y}%, 0) rotate(${r}deg) scale(${s})`;
+            if(wheel) wheel.style.transform = `rotate(${scrollY * 0.5}deg)`;
+
+
+            // C. REVEAL TEXT
+            const trigger = height * 0.8;
+            contentBoxes.forEach(box => {
+                if (box.getBoundingClientRect().top < trigger) {
+                    box.classList.add('visible');
+                } else {
+                    box.classList.remove('visible');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

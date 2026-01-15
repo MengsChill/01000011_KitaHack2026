@@ -1,0 +1,170 @@
+/* =========================================
+   SMARTSTICK | SIGN IN STYLES
+   ========================================= */
+
+:root {
+    --neon-cyan: #00f3ff;
+    --bg-dark: #12161c;
+    --glass-bg: rgba(40, 45, 55, 0.7);
+    --input-bg: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    font-family: 'Inter', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Grid Effect */
+body::before {
+    content: "";
+    position: absolute; width: 200%; height: 200%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+    animation: gridMove 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes gridMove {
+    0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+    100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
+}
+
+/* Auth Container */
+.auth-container {
+    width: 400px;
+    padding: 40px;
+    background: var(--glass-bg);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    text-align: center;
+    position: relative;
+    animation: fadeUp 0.8s ease-out;
+}
+
+/* Neon Top Border */
+.auth-container::after {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2px;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+.highlight { color: var(--neon-cyan); }
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Form Groups */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+    margin-bottom: 8px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s;
+    box-sizing: border-box; /* Fixes padding issues */
+}
+
+input:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    background: rgba(0, 243, 255, 0.05);
+}
+
+/* Buttons */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background: var(--neon-cyan);
+    color: black;
+    box-shadow: 0 0 20px var(--neon-cyan);
+}
+
+.alt-link {
+    display: block;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.alt-link:hover { color: white; }
+
+/* Animation */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode {
+    --bg-dark: #f0f4f8;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    color: #333;
+}
+body.light-mode h2 { color: #444; }
+body.light-mode .logo { color: #222; }
+body.light-mode .auth-container { border-color: #ccc; }
+body.light-mode input { 
+    background: rgba(0,0,0,0.05); 
+    color: #333; 
+    border-color: #bbb;
+}

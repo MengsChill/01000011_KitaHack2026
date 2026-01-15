@@ -1,0 +1,138 @@
+/* =========================================
+   SMARTSTICK | REGISTER STYLES
+   ========================================= */
+
+:root {
+    --neon-blue: #0066ff; /* Blue theme for Register to distinguish it */
+    --bg-dark: #12161c;
+    --glass-bg: rgba(40, 45, 55, 0.7);
+    --input-bg: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0; padding: 0;
+    background-color: var(--bg-dark);
+    font-family: 'Inter', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; position: relative;
+}
+
+/* Different Grid Animation for Register */
+body::before {
+    content: "";
+    position: absolute; width: 200%; height: 200%;
+    background-image: 
+        radial-gradient(rgba(0, 102, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -1;
+    animation: pulseGrid 4s infinite alternate;
+}
+
+@keyframes pulseGrid {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.6; }
+}
+
+.auth-container {
+    width: 400px;
+    padding: 40px;
+    background: var(--glass-bg);
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    text-align: center;
+    position: relative;
+    animation: fadeUp 0.8s ease-out;
+}
+
+/* Blue Neon Top Border */
+.auth-container::after {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white; text-decoration: none;
+    display: inline-block;
+}
+.highlight { color: var(--neon-blue); }
+
+h2 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+    color: #aaa; margin-bottom: 25px; letter-spacing: 2px;
+}
+
+.input-group { margin-bottom: 15px; text-align: left; }
+
+label {
+    display: block; font-size: 0.8rem;
+    color: var(--neon-blue); margin-bottom: 5px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input {
+    width: 100%; padding: 12px;
+    background: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: white; font-family: 'Inter', sans-serif;
+    outline: none; transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+    background: rgba(0, 102, 255, 0.05);
+}
+
+.submit-btn {
+    width: 100%; padding: 12px; margin-top: 15px;
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-family: 'Orbitron', sans-serif; font-weight: bold;
+    cursor: pointer; border-radius: 5px;
+    transition: all 0.3s;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background: var(--neon-blue); color: white;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.alt-link {
+    display: block; margin-top: 20px;
+    font-size: 0.8rem; color: #888;
+    text-decoration: none; transition: color 0.3s;
+}
+.alt-link:hover { color: white; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode {
+    --bg-dark: #f0f4f8;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    color: #333;
+}
+body.light-mode h2 { color: #444; }
+body.light-mode .logo { color: #222; }
+body.light-mode .auth-container { border-color: #ccc; }
+body.light-mode input { 
+    background: rgba(0,0,0,0.05); 
+    color: #333; 
+    border-color: #bbb;
+}

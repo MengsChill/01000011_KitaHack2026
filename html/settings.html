@@ -2,73 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Settings | SmartStick</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; }
-        input[type="text"], select {
-            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
-        }
-        .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStick | Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/user-dashboard.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <div class="brand"><span class="material-icons-round">visibility</span> <span>SmartStick</span></div>
-        <ul class="nav-links">
-            <li><a href="dashboard.html" class="nav-link"><span class="material-icons-round">dashboard</span><span>Dashboard</span></a></li>
-            <li><a href="tracking.html" class="nav-link"><span class="material-icons-round">map</span><span>Live Tracking</span></a></li>
-            <li><a href="logs.html" class="nav-link"><span class="material-icons-round">history</span><span>Hazard Logs</span></a></li>
-            <li><a href="settings.html" class="nav-link active"><span class="material-icons-round">settings</span><span>Settings</span></a></li>
-        </ul>
-    </aside>
+    <div class="dashboard-wrapper sidebar-collapsed" id="sidebar-wrapper">
+        <header class="top-bar">
+            <div class="top-bar-left"><button id="sidebar-toggle" class="icon-btn"><i class="fas fa-bars"></i></button><a href="homepage.html" class="brand-logo">SMART<span class="highlight">STICK</span></a></div>
+            <div class="top-bar-right"><div class="profile-trigger"><img src="https://ui-avatars.com/api/?name=John+Doe&background=2563eb&color=fff" class="profile-img"></div></div>
+        </header>
 
-    <main class="main-content">
-        <div class="header">
-            <h1>Settings</h1>
-        </div>
+        <aside class="sidebar">
+            <ul class="side-nav">
+                <li><a href="user-dashboard.html"><i class="fas fa-th-large"></i> <span class="link-text">Overview</span></a></li>
+                <li><a href="live-haptics.html"><i class="fas fa-wave-square"></i> <span class="link-text">Live Haptics</span></a></li>
+                <li><a href="route-history.html"><i class="fas fa-map-marked-alt"></i> <span class="link-text">Route History</span></a></li>
+                <li class="active"><a href="settings.html"><i class="fas fa-cog"></i> <span class="link-text">Settings</span></a></li>
+            </ul>
+        </aside>
 
-        <div class="dashboard-grid">
-            <div class="card" style="grid-column: span 2;">
-                <h2>Stick Preferences</h2>
-                <p style="color: #666; margin-bottom: 20px;">Customize feedback based on user comfort.</p>
+        <main class="main-content">
+            <div class="content-container">
+                <h1>Device Settings</h1>
+                
+                <div class="widget-grid">
+                    <div class="dash-card">
+                        <h3>Preferences</h3>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Haptic Vibration Intensity</label>
+                            <input type="range" min="1" max="100" value="80" style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label>Voice Feedback Volume</label>
+                            <input type="range" min="1" max="100" value="50" style="width: 100%;">
+                        </div>
+                    </div>
 
-                <div class="toggle-row">
-                    <span>Haptic Vibration</span>
-                    <input type="checkbox" checked>
+                    <div class="dash-card">
+                        <h3>Safety Features</h3>
+                        <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <span>Night Vision Mode</span>
+                            <i class="fas fa-toggle-on" style="font-size: 1.5rem; color: var(--primary-blue); cursor: pointer;"></i>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Auto-SOS on Fall</span>
+                            <i class="fas fa-toggle-on" style="font-size: 1.5rem; color: var(--primary-blue); cursor: pointer;"></i>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Emergency Contact Number</label>
+                            <input type="text" value="+1 (555) 019-2834" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                    </div>
                 </div>
-                <div class="toggle-row">
-                    <span>Audio Warnings (TTS)</span>
-                    <input type="checkbox" checked>
-                </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>Sensitivity Level</label>
-                    <select>
-                        <option>Low (Only large obstacles)</option>
-                        <option>Medium (Default)</option>
-                        <option selected>High (Detect slippery floor/small items)</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary" onclick="alert('Settings saved to Firebase!')">Save Changes</button>
+                
+                <button style="margin-top: 20px; background: var(--primary-blue); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="alert('Settings Saved!')">Save Changes</button>
             </div>
-
-            <div class="card" style="grid-column: span 2;">
-                <h2>Emergency Profile</h2>
-                <div class="form-group">
-                    <label>Caretaker Phone Number</label>
-                    <input type="text" value="+60 12-345 6789">
-                </div>
-                <div class="form-group">
-                    <label>Hospital Preference</label>
-                    <input type="text" value="General Hospital KL">
-                </div>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                <button class="btn btn-danger" onclick="alert('Logged out from Firebase Auth')">Sign Out</button>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
+    <script>
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const wrapper = document.getElementById('sidebar-wrapper');
+        toggleBtn.addEventListener('click', () => wrapper.classList.toggle('sidebar-collapsed'));
+    </script>
 </body>
 </html>

@@ -1,0 +1,197 @@
+/* =========================================
+   SMARTSTICK | DASHBOARD STYLES
+   ========================================= */
+:root {
+    --primary-blue: #2563eb;
+    --accent-cyan: #06b6d4;
+    --text-main: #111827;
+    --text-secondary: #6b7280;
+    --bg-white: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.9);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#wave-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+
+/* --- BACK BUTTON --- */
+.back-home-btn {
+    position: absolute; top: 30px; left: 30px;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.8rem;
+    z-index: 100; transition: 0.3s;
+}
+.back-home-btn:hover { color: var(--primary-blue); }
+
+/* --- LAYOUT --- */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    animation: fadeUp 0.8s ease-out;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dash-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 30px; border-bottom: 2px solid rgba(0,0,0,0.05);
+    padding-bottom: 20px;
+}
+
+.logo { font-family: 'Orbitron'; font-size: 1.5rem; font-weight: 700; }
+.highlight { color: var(--primary-blue); }
+
+.status-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: white; padding: 8px 16px; border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 1px;
+}
+.status-dot { width: 10px; height: 10px; border-radius: 50%; transition: 0.3s; }
+
+/* --- GRID SYSTEM --- */
+.dash-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 25px;
+}
+
+/* --- CARDS GENERAL --- */
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    position: relative; overflow: hidden;
+}
+
+.card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+}
+.card-top h3 { font-family: 'Orbitron'; font-size: 0.9rem; color: var(--text-secondary); }
+
+/* --- VISION CARD --- */
+.vision-card { grid-row: span 2; }
+.live-tag {
+    background: #ef4444; color: white; padding: 2px 8px;
+    border-radius: 4px; font-size: 0.7rem; font-weight: bold;
+    animation: blink 2s infinite;
+}
+@keyframes blink { 50% { opacity: 0.5; } }
+
+.vision-window {
+    width: 100%; height: 400px;
+    background: #111827; border-radius: 12px;
+    position: relative; overflow: hidden;
+    background-image: radial-gradient(circle, #1f2937 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.scan-line {
+    width: 100%; height: 2px; background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    position: absolute; top: 0;
+    animation: scan 3s linear infinite;
+}
+@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+.overlay-text {
+    position: absolute; bottom: 20px; left: 20px;
+    color: white; font-family: 'Orbitron'; font-size: 0.8rem;
+    z-index: 2;
+}
+.sim-notice {
+    font-size: 0.7rem; color: #fbbf24; margin-top: 5px; letter-spacing: 1px;
+}
+
+/* --- STATS CARD --- */
+.stat-item {
+    display: flex; align-items: center; gap: 15px;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.stat-item:last-child { border: none; margin: 0; padding: 0; }
+
+.icon-box {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(37, 99, 235, 0.1); color: var(--primary-blue);
+    display: flex; justify-content: center; align-items: center;
+}
+.stat-info { display: flex; flex-direction: column; }
+.stat-info .label { font-size: 0.7rem; color: var(--text-secondary); }
+.stat-info .value { font-weight: 700; font-size: 1.1rem; }
+
+/* --- LOCKED OVERLAY STYLES --- */
+.controls-card { position: relative; }
+
+.locked-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.75); /* Slightly more opaque for demo */
+    backdrop-filter: blur(12px); /* Strong blur */
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 10;
+}
+.locked-overlay i { font-size: 2.5rem; color: var(--text-secondary); margin-bottom: 15px; }
+.locked-overlay p { 
+    font-family: 'Orbitron'; font-weight: bold; color: var(--text-secondary); 
+    margin-bottom: 20px; font-size: 1rem;
+}
+
+/* Call to Action Buttons in Overlay */
+.cta-buttons { display: flex; gap: 15px; align-items: center; }
+
+.unlock-btn {
+    background: var(--primary-blue); color: white;
+    padding: 12px 24px; text-decoration: none; border-radius: 8px;
+    font-family: 'Orbitron'; font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: 0.3s;
+}
+.unlock-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+.secondary-link {
+    color: var(--primary-blue); text-decoration: none;
+    font-size: 0.9rem; font-weight: 600;
+}
+.secondary-link:hover { text-decoration: underline; }
+
+/* Disabled Controls Visuals */
+input[type=range] { width: 100%; margin: 10px 0 20px; cursor: not-allowed; opacity: 0.5; }
+
+/* Toggle Switch */
+.toggle-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 0.9rem; opacity: 0.5; }
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius: 20px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary-blue); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+.action-btn {
+    width: 100%; padding: 12px; background: #ef4444; color: white;
+    border: none; border-radius: 6px; font-family: 'Orbitron'; 
+    margin-top: 10px; opacity: 0.5; cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .dash-grid { grid-template-columns: 1fr; }
+    .vision-card { grid-row: auto; height: 300px; }
+}

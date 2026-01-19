@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartStick 2026 | Laboratory Interface</title>
+    <title>SmartStick</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
 
-    <div class="bg-grid"></div>
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="wave-canvas"></canvas>
 
     <nav class="top-nav">
         <a href="#" class="logo">SMART<span class="highlight">STICK</span></a>
@@ -23,15 +23,10 @@
     </nav> 
 
     <div id="stick-assembly">
-        <div id="stick-assembly">
         <div class="pulse-ring ring-1"></div>
         <div class="pulse-ring ring-2"></div>
         <div class="pulse-glow"></div>
 
-        <div class="handle">
-            <div class="part-label" style="top: 20px; left: 120%;">HAPTIC ENGINE</div>
-        </div>
-        </div>
         <div class="pulse-circle"></div>
 
         <div class="handle">
@@ -53,7 +48,7 @@
     <section id="sec-1">
         <div class="content-box visible hero-text">
             <h1>NEURAL<br><span class="highlight">NAVIGATION</span></h1>
-            <p>INTELLIGENT OBSTACLE DETECTION.<br>SCROLL TO ASSEMBLE DEVICE.</p>
+            <p>INTELLIGENT OBSTACLE DETECTION.<br>SCROLL TO INSPECT DEVICE ARCHITECTURE.</p>
             <div class="status-indicator">
                 <span class="dot"></span> SYSTEM ONLINE
             </div>
@@ -94,106 +89,107 @@
     </section>
 
     <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>SMART<span class="highlight">STICK</span> 2026</h4>
-                <p>Reinventing mobility for the visually impaired.</p>
+        <div class="footer-grid">
+            <div class="footer-col brand-col">
+                <a href="#" class="logo">SMART<span class="highlight">STICK</span></a>
+                <p class="footer-desc">
+                    Reinventing mobility for the visually impaired with AI-driven navigation and haptic feedback technology.
+                </p>
+                <div class="social-icons">
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
             </div>
+
             <div class="footer-col">
-                <h4>INTERFACE</h4>
+                <h4>PRODUCT</h4>
                 <ul class="footer-links">
-                    <li><a href="#">System Reboot</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
                     <li><a href="dashboard.html">Live Dashboard</a></li>
                 </ul>
             </div>
+
+            <div class="footer-col">
+                <h4>COMPANY</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>LEGAL</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="cookies.html">Cookie Settings</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-bottom">&copy; 2026 SMARTSTICK PROJECT.</div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 SMARTSTICK PROJECT. ALL RIGHTS RESERVED.</p>
+        </div>
     </footer>
 
     <script>
-        // --- 1. NEURAL WEB BACKGROUND LOGIC ---
-        const canvas = document.getElementById('particle-canvas');
+        // --- 1. FLUID WAVE ANIMATION (Light Mode) ---
+        const canvas = document.getElementById('wave-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
-        let particles = [];
         
-        // Mouse tracking for interaction
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+        let increment = 0; // Animation timer
+        
+        function resize() { 
+            width = window.innerWidth; 
+            height = window.innerHeight; 
+            canvas.width = width; 
+            canvas.height = height; 
+        }
         window.addEventListener('resize', resize);
         resize();
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width; this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1.5; // Increased speed slightly
-                this.vy = (Math.random() - 0.5) * 1.5;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                
-                // Bounce off edges
-                if(this.x < 0 || this.x > width) this.vx *= -1;
-                if(this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-                ctx.fillStyle = "#2563eb"; ctx.fill();
-            }
-        }
-        
-        // Create 80 particles
-        for(let i=0; i<80; i++) particles.push(new Particle());
+        function animate() {
+            // Light Mode: Clear with pure white
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, width, height);
 
-        function animateParticles() {
-            ctx.clearRect(0,0,width,height);
-            
-            for(let a=0; a<particles.length; a++) {
-                let pA = particles[a];
-                pA.update();
-                pA.draw();
+            // Settings for the waves
+            // We draw 3 overlapping waves to create depth
+            const waves = [
+                { y: height * 0.5, length: 0.01, amplitude: 80, speed: 0.01, color: "rgba(37, 99, 235, 0.1)" }, // Blue (Slow, Big)
+                { y: height * 0.5, length: 0.02, amplitude: 60, speed: 0.02, color: "rgba(6, 182, 212, 0.15)" }, // Cyan (Med)
+                { y: height * 0.5, length: 0.03, amplitude: 40, speed: 0.04, color: "rgba(37, 99, 235, 0.05)" }  // Blue (Fast, Small)
+            ];
 
-                // Connect particles to EACH OTHER (Neural Web Effect)
-                for(let b=a; b<particles.length; b++) {
-                    let pB = particles[b];
-                    let dx = pA.x - pB.x;
-                    let dy = pA.y - pB.y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
+            waves.forEach((wave, i) => {
+                ctx.beginPath();
+                ctx.moveTo(0, wave.y);
 
-                    if(distance < 120) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(37, 99, 235, ${1 - distance/120})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(pA.x, pA.y);
-                        ctx.lineTo(pB.x, pB.y);
-                        ctx.stroke();
-                    }
+                // Draw sine wave across the screen width
+                for (let i = 0; i < width; i++) {
+                    ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment * wave.speed * 100) * wave.amplitude);
                 }
-                
-                // Connect to Mouse (Interactive)
-                let mDx = pA.x - mouse.x;
-                let mDy = pA.y - mouse.y;
-                let mDist = Math.sqrt(mDx*mDx + mDy*mDy);
-                if(mDist < 150) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(6, 182, 212, ${1 - mDist/150})`; // Cyan for user interaction
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(pA.x, pA.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
 
-        // --- 2. STICK ASSEMBLY LOGIC (FIXED POSITION) ---
+                ctx.lineTo(width, height); // Fill to bottom right
+                ctx.lineTo(0, height);     // Fill to bottom left
+                ctx.fillStyle = wave.color;
+                ctx.fill();
+            });
+
+            increment += 0.01;
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- 2. STICK ASSEMBLY LOGIC (UNCHANGED) ---
         const stick = document.getElementById('stick-assembly');
         const handle = document.querySelector('.handle');
         const wheelBase = document.querySelector('.wheel-base');
@@ -206,29 +202,37 @@
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
 
-            // ANIMATION: ASSEMBLY ONLY (No rotation, No moving left/right)
-            // Fully assembled after 400px of scrolling
-            let assemblyProgress = Math.min(scrollY / 400, 1); 
-            let explodedAmount = 1 - assemblyProgress; 
+            // ANIMATION LOGIC: Combine -> Separate -> Combine
+            let separationAmount = 0; 
 
-            // Moves handle UP and Wheel DOWN based on explodedAmount
-            let handleOffset = explodedAmount * -80; // Distance to float up
-            let wheelOffset = explodedAmount * -80;  // Distance to float down
+            if (scrollY < 200) {
+                separationAmount = 0; // Combined
+            } else if (scrollY >= 200 && scrollY < 600) {
+                separationAmount = (scrollY - 200) / 400; // Explode
+            } else if (scrollY >= 600 && scrollY < 1000) {
+                separationAmount = 1; // Stay Open
+            } else if (scrollY >= 1000 && scrollY < 1400) {
+                separationAmount = 1 - ((scrollY - 1000) / 400); // Close
+            } else {
+                separationAmount = 0; // Closed
+            }
+
+            separationAmount = Math.max(0, Math.min(1, separationAmount));
+
+            let handleOffset = separationAmount * -80; 
+            let wheelOffset = separationAmount * -80;  
 
             handle.style.transform = `translate(-50%, calc(-100% + ${handleOffset}px))`;
             wheelBase.style.transform = `translate(-50%, calc(50% - ${wheelOffset}px))`;
             
-            // Labels fade out as it assembles
-            labels.forEach(l => l.style.opacity = explodedAmount);
+            labels.forEach(l => l.style.opacity = separationAmount);
 
-            // TEXT REVEAL LOGIC
             contentBoxes.forEach(box => {
                 const boxTop = box.getBoundingClientRect().top;
                 if(boxTop < viewportHeight * 0.8) box.classList.add('visible');
                 else box.classList.remove('visible');
             });
         }
-        // Run once on load
         updateScroll();
     </script>
 </body>

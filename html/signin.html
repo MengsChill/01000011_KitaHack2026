@@ -3,35 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartStick | Access Terminal</title>
+    <title>SmartStick | Sign In</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="../css/signin.css">
 </head>
 <body>
 
-    <div class="auth-container">
-        <a href="homepage.html" class="logo">SMART<span class="highlight">STICK</span></a>
-        <h2>IDENTITY VERIFICATION</h2>
+    <a href="homepage.html" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> HOME
+    </a>
 
-        <form>
-            <div class="input-group">
-                <label>USER ID / EMAIL</label>
-                <input type="email" placeholder="Enter credentials..." required>
+    <canvas id="wave-canvas"></canvas>
+
+    <div class="split-screen-container">
+        <div class="left-panel">
+            <div class="brand-content">
+                <a href="homepage.html" class="logo">SMART<span class="highlight">STICK</span></a>
+                <h1>WELCOME BACK</h1>
+                <p>Initialize your haptic navigation session.</p>
             </div>
+            <div class="decorative-circle"></div>
+        </div>
 
-            <div class="input-group">
-                <label>ACCESS CODE</label>
-                <input type="password" placeholder="Enter password..." required>
+        <div class="right-panel">
+            <div class="form-header">
+                <h2>USER LOGIN</h2>
             </div>
+            
+            <form>
+                <div class="input-group">
+                    <label>USER ID / EMAIL</label>
+                    <input type="email" placeholder="Enter credentials..." required>
+                </div>
 
-            <button type="submit" class="submit-btn">INITIATE SESSION</button>
-        </form>
+                <div class="input-group">
+                    <label>ACCESS CODE</label>
+                    <input type="password" placeholder="Enter password..." required>
+                </div>
 
-        <a href="register.html" class="alt-link">NEW UNIT? REGISTER PROTOCOL -></a>
-        <a href="homepage.html" class="alt-link" style="margin-top: 10px; font-size: 0.7rem;">&larr; ABORT</a>
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox"> Remember Me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">INITIATE SESSION</button>
+            </form>
+
+            <div class="alt-action">
+                <span>New User?</span> <a href="register.html">Create Protocol ID</a>
+            </div>
+        </div>
     </div>
-    <script src="../js/theme.js"></script>
+
+    <script>
+        // --- FLUID WAVE BACKGROUND ---
+        const canvas = document.getElementById('wave-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, increment = 0;
+        
+        function resize() { 
+            width = window.innerWidth; height = window.innerHeight; 
+            canvas.width = width; canvas.height = height; 
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function animate() {
+            ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, width, height);
+            const waves = [
+                { y: height * 0.5, length: 0.01, amplitude: 80, speed: 0.01, color: "rgba(37, 99, 235, 0.1)" },
+                { y: height * 0.5, length: 0.02, amplitude: 60, speed: 0.02, color: "rgba(6, 182, 212, 0.15)" },
+                { y: height * 0.5, length: 0.03, amplitude: 40, speed: 0.04, color: "rgba(37, 99, 235, 0.05)" }
+            ];
+            waves.forEach((wave) => {
+                ctx.beginPath(); ctx.moveTo(0, wave.y);
+                for (let i = 0; i < width; i++) {
+                    ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment * wave.speed * 100) * wave.amplitude);
+                }
+                ctx.lineTo(width, height); ctx.lineTo(0, height);
+                ctx.fillStyle = wave.color; ctx.fill();
+            });
+            increment += 0.01;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>

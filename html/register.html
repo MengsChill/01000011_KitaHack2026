@@ -3,45 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartStick | New User Protocol</title>
+    <title>SmartStick | Register</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
 
-    <div class="auth-container">
-        <a href="homepage.html" class="logo">SMART<span class="highlight">STICK</span></a>
-        <h2>INITIALIZE NEW USER</h2>
+    <a href="homepage.html" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> HOME
+    </a>
 
-        <form>
-            <div class="input-group">
-                <label>OPERATOR NAME</label>
-                <input type="text" placeholder="Full Name..." required>
+    <canvas id="wave-canvas"></canvas>
+
+    <div class="split-screen-container">
+        <div class="left-panel">
+            <div class="brand-content">
+                <a href="homepage.html" class="logo">SMART<span class="highlight">STICK</span></a>
+                <h1>JOIN THE NETWORK</h1>
+                <p>Register your device to enable AI features.</p>
             </div>
+            <div class="decorative-circle"></div>
+        </div>
 
-            <div class="input-group">
-                <label>CONTACT FREQUENCY (EMAIL)</label>
-                <input type="email" placeholder="email@address.com..." required>
+        <div class="right-panel">
+            <div class="form-header">
+                <h2>NEW ACCOUNT</h2>
             </div>
+            
+            <form>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>FIRST NAME</label>
+                        <input type="text" placeholder="John" required>
+                    </div>
+                    <div class="input-group">
+                        <label>LAST NAME</label>
+                        <input type="text" placeholder="Doe" required>
+                    </div>
+                </div>
 
-            <div class="input-group">
-                <label>SET PASSCODE</label>
-                <input type="password" placeholder="Create Password..." required>
+                <div class="input-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" placeholder="name@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>CREATE PASSWORD</label>
+                    <input type="password" placeholder="Min. 8 characters" required>
+                </div>
+
+                <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
+            </form>
+
+            <div class="alt-action">
+                <span>Already have an account?</span> <a href="signin.html">Sign In</a>
             </div>
-
-            <div class="input-group">
-                <label>CONFIRM PASSCODE</label>
-                <input type="password" placeholder="Repeat Password..." required>
-            </div>
-
-            <button type="submit" class="submit-btn">ESTABLISH UPLINK</button>
-        </form>
-
-        <a href="signin.html" class="alt-link">ALREADY REGISTERED? SIGN IN -></a>
-        <a href="homepage.html" class="alt-link" style="margin-top: 10px; font-size: 0.7rem;">&larr; ABORT</a>
+        </div>
     </div>
-    <script src="../js/theme.js"></script>
+
+    <script>
+        const canvas = document.getElementById('wave-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, increment = 0;
+        
+        function resize() { 
+            width = window.innerWidth; height = window.innerHeight; 
+            canvas.width = width; canvas.height = height; 
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function animate() {
+            ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, width, height);
+            const waves = [
+                { y: height * 0.5, length: 0.01, amplitude: 80, speed: 0.01, color: "rgba(37, 99, 235, 0.1)" },
+                { y: height * 0.5, length: 0.02, amplitude: 60, speed: 0.02, color: "rgba(6, 182, 212, 0.15)" },
+                { y: height * 0.5, length: 0.03, amplitude: 40, speed: 0.04, color: "rgba(37, 99, 235, 0.05)" }
+            ];
+            waves.forEach((wave) => {
+                ctx.beginPath(); ctx.moveTo(0, wave.y);
+                for (let i = 0; i < width; i++) {
+                    ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment * wave.speed * 100) * wave.amplitude);
+                }
+                ctx.lineTo(width, height); ctx.lineTo(0, height);
+                ctx.fillStyle = wave.color; ctx.fill();
+            });
+            increment += 0.01;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>

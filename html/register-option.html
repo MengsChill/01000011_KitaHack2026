@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartStick | Start</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+
+    <canvas id="wave-canvas"></canvas>
+    
+    <a href="/homepage" class="back-home-btn"><i class="fas fa-arrow-left"></i> HOME</a>
+
+    <div class="options-container">
+        <div style="margin-bottom: 20px;">
+            <a href="#" class="logo" style="color: var(--primary-blue);">SMART<span style="color: var(--accent-cyan);">STICK</span></a>
+        </div>
+
+        <div class="options-header">
+            <h2>CREATE ACCOUNT</h2>
+            <p>Join the network. Choose your method.</p>
+        </div>
+
+        <button id="google-btn" class="action-btn btn-google">
+            <img src="../images/google-icon2.svg" alt="G" width="20">
+            Continue with Google
+        </button>
+
+        <a href="register" class="action-btn btn-primary">
+            <i class="fas fa-envelope"></i>
+            Continue with Email
+        </a>
+
+        <div class="alt-action">
+            <span>Already have an account?</span> <a href="signin">Sign In</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { auth } from "../js/firebase-config.js";
+
+        // Wave Animation
+        const canvas = document.getElementById('wave-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height, increment = 0;
+            function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+            window.addEventListener('resize', resize); resize();
+            function animate() {
+                ctx.fillStyle = "#f8fafc"; 
+                ctx.fillRect(0, 0, width, height);
+                const waves = [{ y: height * 0.5, length: 0.01, amplitude: 80, speed: 0.01, color: "rgba(37, 99, 235, 0.1)" }];
+                waves.forEach(wave => {
+                    ctx.beginPath(); ctx.moveTo(0, wave.y);
+                    for(let i=0; i<width; i++) ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment * wave.speed * 100) * wave.amplitude);
+                    ctx.lineTo(width, height); ctx.lineTo(0, height); ctx.fillStyle = wave.color; ctx.fill();
+                });
+                increment += 0.01; requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Google Sign In
+        const googleBtn = document.getElementById('google-btn');
+        if(googleBtn){
+            googleBtn.addEventListener('click', () => {
+                const provider = new GoogleAuthProvider();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        window.location.href = "homepage"; // Success Redirect
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

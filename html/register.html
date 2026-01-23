@@ -2,35 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartStick | Register</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
 
-    <a href="/homepage" class="back-home-btn">
-        <i class="fas fa-arrow-left"></i> HOME
-    </a>
-
     <canvas id="wave-canvas"></canvas>
+
+    <a href="/signup-options" class="back-home-btn"><i class="fas fa-arrow-left"></i> BACK</a>
 
     <div class="split-screen-container">
         <div class="left-panel">
             <div class="brand-content">
-                <a href="/homepage" class="logo">SMART<span class="highlight">STICK</span></a>
+                <a href="#" class="logo">SMART<span class="highlight">STICK</span></a>
                 <h1>JOIN THE NETWORK</h1>
-                <p>Register your device to enable AI features.</p>
+                <p>Secure encryption. AI-Powered.</p>
             </div>
             <div class="decorative-circle"></div>
         </div>
 
         <div class="right-panel">
             <div class="form-header">
-                <h2>NEW ACCOUNT</h2>
+                <h2>EMAIL REGISTRATION</h2>
             </div>
             
             <form id="register-form">
@@ -51,44 +46,39 @@
                 </div>
 
                 <div class="input-group">
-                    <label>CREATE PASSWORD</label>
-                    <input type="password" id="password-input" placeholder="Min. 8 characters" required>
+                    <label>PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password-input" placeholder="Min 8 chars..." required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <ul class="password-requirements">
+                        <li id="req-length"><i class="fas fa-circle"></i> 8-10 chars</li>
+                        <li id="req-upper"><i class="fas fa-circle"></i> 1 Uppercase</li>
+                        <li id="req-special"><i class="fas fa-circle"></i> 1 Special (!@#$)</li>
+                        <li id="req-mix"><i class="fas fa-circle"></i> Letters & Numbers</li>
+                    </ul>
                 </div>
 
-                <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
+                <div class="input-group">
+                    <label>CONFIRM PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirm-password-input" placeholder="Re-enter password" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <small id="match-message" style="font-size: 0.8rem; display:block; margin-top:5px;"></small>
+                </div>
+
+                <button type="submit" class="action-btn btn-primary" id="submit-btn" disabled>
+                    CREATE ACCOUNT
+                </button>
             </form>
 
-            <div class="divider">
-                <span>OR</span>
-            </div>
-
-            <div class="google-btn-wrapper">
-                <button id="google-btn" class="google-round-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
-                </button>
-            </div>
-
             <div class="alt-action">
-                <span>Already have an account?</span> <a href="/signin">Sign In</a>
+                <span>Already have an account?</span> <a href="signin">Sign In</a>
             </div>
         </div>
     </div>
 
-    <script type="module">
-        import { signInWithGoogle } from '../js/auth.js';
-
-        // 1. Google Button Logic
-        const googleBtn = document.getElementById('google-btn');
-        if (googleBtn) {
-            googleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                signInWithGoogle();
-            });
-        }
-    </script>
-    
-    <script type="module" src="/js/register.js"></script>
-
-    <script type="module" src="/js/auth.js"></script>
+    <script type="module" src="../js/register.js"></script>
 </body>
 </html>

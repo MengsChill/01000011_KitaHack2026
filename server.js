@@ -23,6 +23,10 @@ app.get('/homepage', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'homepage.html'));
 });
 
+app.get('/register-option', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'register-option.html'));
+});
+
 // Register URL (localhost:3001/register) -> Shows Register
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'register.html'));

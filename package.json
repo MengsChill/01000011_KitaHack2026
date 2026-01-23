@@ -1,0 +1,27 @@
+{
+  "name": "kitahack_2026",
+  "version": "1.0.0",
+  "description": "Empowering independence through AI.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MengsChill/01000011_KitaHack2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MengsChill/01000011_KitaHack2026/issues"
+  },
+  "homepage": "https://github.com/MengsChill/01000011_KitaHack2026#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

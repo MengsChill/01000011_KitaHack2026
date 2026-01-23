@@ -1,0 +1,7 @@
+table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 12px; overflow: hidden; }
+        th, td { padding: 15px 20px; text-align: left; border-bottom: 1px solid #f3f4f6; }
+        th { background: #f9fafb; font-weight: 600; color: var(--text-secondary); font-size: 0.85rem; }
+        td { color: var(--text-main); font-size: 0.95rem; }
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .completed { background: #d1fae5; color: #065f46; }
+        .aborted { background: #fee2e2; color: #991b1b; }

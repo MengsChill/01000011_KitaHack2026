@@ -168,3 +168,63 @@ input[type="checkbox"] {
 
 .alt-action { margin-top: 25px; text-align: center; font-size: 0.9rem; color: var(--text-secondary); }
 .alt-action a { color: var(--primary-blue); text-decoration: none; font-weight: 700; margin-left: 5px; }
+
+/* --- GOOGLE BUTTON & DIVIDER STYLES (ADDED) --- */
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0 20px 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.divider::before, 
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.divider span {
+    padding: 0 15px;
+    color: #9ca3af;
+}
+
+.google-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.google-round-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.google-round-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.google-round-btn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.google-round-btn:active {
+    transform: translateY(0);
+}

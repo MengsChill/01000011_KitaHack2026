@@ -28,3 +28,34 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
+
+// 1. USE THE EXACT SAME CDN LINK AS CONFIG
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// 2. IMPORT THE AUTH OBJECT
+import { auth } from "./firebase-config.js"; 
+
+// 3. Your Register Logic
+const registerForm = document.getElementById('register-form');
+
+if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email-input').value; 
+        const password = document.getElementById('password-input').value;
+
+        console.log("Attempting to register:", email); 
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log("User Registered:", userCredential.user);
+                alert("Registration Successful!");
+                window.location.href = "signin.html";
+            })
+            .catch((error) => {
+                console.error("Registration Failed:", error.code, error.message);
+                alert("Error: " + error.message);
+            });
+    });
+}

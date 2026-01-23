@@ -47,12 +47,12 @@
 
                 <div class="input-group">
                     <label>EMAIL ADDRESS</label>
-                    <input type="email" id="email" placeholder="name@example.com" required>
+                    <input type="email" id="email-input" placeholder="name@example.com" required>
                 </div>
 
                 <div class="input-group">
                     <label>CREATE PASSWORD</label>
-                    <input type="password" id="password" placeholder="Min. 8 characters" required>
+                    <input type="password" id="password-input" placeholder="Min. 8 characters" required>
                 </div>
 
                 <button type="submit" class="submit-btn">CREATE ACCOUNT</button>
@@ -85,28 +85,10 @@
                 signInWithGoogle();
             });
         }
-
-        // 2. Wave Animation (Keep this to prevent it from breaking)
-        const canvas = document.getElementById('wave-canvas');
-        if(canvas) {
-            const ctx = canvas.getContext('2d');
-            let width, height, increment = 0;
-            function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
-            window.addEventListener('resize', resize); resize();
-            function animate() {
-                ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, width, height);
-                const waves = [{ y: height * 0.5, length: 0.01, amplitude: 80, speed: 0.01, color: "rgba(37, 99, 235, 0.1)" }];
-                waves.forEach(wave => {
-                    ctx.beginPath(); ctx.moveTo(0, wave.y);
-                    for(let i=0; i<width; i++) ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment * wave.speed * 100) * wave.amplitude);
-                    ctx.lineTo(width, height); ctx.lineTo(0, height); ctx.fillStyle = wave.color; ctx.fill();
-                });
-                increment += 0.01; requestAnimationFrame(animate);
-            }
-            animate();
-        }
     </script>
     
-    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="/js/register.js"></script>
+
+    <script type="module" src="/js/auth.js"></script>
 </body>
 </html>

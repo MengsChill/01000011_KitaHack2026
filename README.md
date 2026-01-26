@@ -8,4 +8,4 @@ This project was a collaborative effort by the following members:
 * **AI integration, ESP32 programming & testing: [Choong Jun Zac](https://github.com/ishtardsama)**
 * **Backend, Frontend Design, UX & testing: [Oh Chu Meng](https://github.com/Meng-prog-ux)**
 * **Electrical Engineering,  & testing: [Teoh Yue Wen]()**
-* **Budget allocation, Finance & Market Analysis: [Jaccob Chin Sing Hung]()** 
+* **Budget allocation, Finance & Market Analysis: Jaccob Chin Sing Hung(No Github 😢)** 

@@ -3,7 +3,7 @@ This project is a smart assistive device designed to help the elderly to navigat
 
 # Contributors
 This project was a collaborative effort by the following members:
-* **AI integration, ESP32 programming & testing: [Choong Jun Zac](https://github.com/ishtardsama)**
-* **Backend, Frontend Design, UX & testing: [Oh Chu Meng](https://github.com/Meng-prog-ux)**
-* **Electrical Engineering,  & testing: [Teoh Yue Wen]()**
+* **AI integration, ESP32 programming & Testing: [Choong Jun Zac](https://github.com/ishtardsama)**
+* **Backend, Frontend Design, UX & Testing: [Oh Chu Meng](https://github.com/Meng-prog-ux)**
+* **Electrical Engineering, Prototype Modeling & Testing: [Teoh Yue Wen]()**
 * **Budget allocation, Finance & Market Analysis: Jaccob Chin Sing Hung(No Github 😢)** 

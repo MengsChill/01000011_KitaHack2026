@@ -4,6 +4,6 @@ POLE redefines what a walking aid can do. Beyond its stylish exterior, this adva
 # Contributors
 This project was a collaborative effort by the following members:
 * **AI integration, ESP32 programming & Testing: [Choong Jun Zac](https://github.com/ishtardsama)**
-* **Mobile App development(Backend/Frontend Design), UX & Testing: [Oh Chu Meng](https://github.com/Meng-prog-ux)**
-* **Electrical Engineering, Prototype Modeling & Testing: [Teoh Yue Wen]()**
+* **Mobile App development(Backend/Frontend Design), UX & Testing: [Oh Chu Meng](https://github.com/MengsChill)**
+* **Electrical Engineering, Prototype Modeling & Testing: [Teoh Yue Wen](https://github.com/TealApples)**
 * **Budget allocation, Finance & Market Analysis: Jaccob Chin Sing Hung(No Github 😢)** 

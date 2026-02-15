@@ -12,9 +12,9 @@
 #include "time.h"
 
 //config
-const char* ssid     = "homebawx";
-const char* password = "OreokilledKitKat420";
-const String apiKey  = "AIzaSyDNGODThVbIIksZsW1QOuLRnhqR1ZaW1lw";
+const char* ssid     = "";
+const char* password = "";
+const String apiKey  = "";
 const String apiUrl  = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey;
 
 //hardware pins

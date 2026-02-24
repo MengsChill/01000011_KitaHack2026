@@ -1,5 +1,5 @@
 /*
- POLE AI Camera (Stable v1.0)
+ POLE AI Camera
  ESP32-S3-N16R8 OV3660
  Captures image on button press and describes via Gemini 2.5 Flash.
  */

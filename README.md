@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
+[![Contributors][contributors-url]
 [![Issues][issues-shield]][issues-url]
 
 

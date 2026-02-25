@@ -78,6 +78,8 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 <!-- ROADMAP -->
 ## Roadmap
 
+POLE is still a work in progress, help us refine our design and features! [Propose Features](https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=enhancement&template=feature-request---.md)
+
 - [x] Base model w/o AI integration
 - [x] AI integration to give a detailed description 
 - [ ] Text to speech locally
@@ -87,6 +89,7 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
     - [ ] Spanish
 
 Propose features you would like to be seen implemented! [Propose Features](https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=enhancement&template=feature-request---.md)
+
 See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

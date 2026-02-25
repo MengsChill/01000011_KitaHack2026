@@ -8,11 +8,7 @@
   <h3 align="center">POLE</h3>
 
   <p align="center">
-    An AI assisted walking stick for the visually impaired!
-    <br />
-    <a href="https://github.com/MengsChill/01000011_KitaHack2026"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
+    An AI assisted walking stick for the visually impaired    <br />
     <a href="https://github.com/MengsChill/01000011_KitaHack2026">View Demo</a>
     &middot;
     <a href="https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>

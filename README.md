@@ -129,7 +129,7 @@ This project was a collaborative effort by the following members:
 <!-- CONTACT -->
 ## Contact
 
-Choong Jun Zac - [@your_twitter](https://twitter.com/your_username) - noteethme@gmail.com@
+Choong Jun Zac - [@your_twitter](https://twitter.com/your_username) - noteethme@gmail.com
 
 Oh Chu Meng - [@your_twitter](https://twitter.com/your_username) - email@example.com
 

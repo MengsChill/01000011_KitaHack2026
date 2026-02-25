@@ -1,52 +1,55 @@
-from machine import I2C, Pin
-import time
+// Define the new pins connected to the components
+const int trigPin = 3;       // Trigger pin of the ultrasonic sensor (D3)
+const int echoPin = 2;       // Echo pin of the ultrasonic sensor (D2)
+const int vibratorPin = 4;   // Pin controlling the vibration motor (D4)
 
-# ==== I2C Setup ====
-i2c = I2C(0, scl=Pin(22), sda=Pin(21), freq=400000)
+// Variables to store duration and calculated distance
+long duration;
+int distance;
 
-# Change to 0x3F if needed
-addr = 0x27
+void setup() {
+  // Initialize the serial monitor for debugging
+  Serial.begin(9600);
+  
+  // Configure the pins as Output or Input
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(vibratorPin, OUTPUT);
+  
+  // Make sure the vibrator is off when the system starts
+  digitalWrite(vibratorPin, LOW);
+}
 
-# ==== Low-level LCD functions ====
-def lcd_write(cmd, mode=0):
-    high = mode | (cmd & 0xF0) | 0x08
-    low = mode | ((cmd << 4) & 0xF0) | 0x08
-    i2c.writeto(addr, bytearray([high | 0x04]))
-    i2c.writeto(addr, bytearray([high]))
-    i2c.writeto(addr, bytearray([low | 0x04]))
-    i2c.writeto(addr, bytearray([low]))
-
-def lcd_cmd(cmd):
-    lcd_write(cmd, 0)
-
-def lcd_data(data):
-    lcd_write(data, 1)
-
-def lcd_init():
-    time.sleep(0.02)
-    lcd_cmd(0x33)
-    lcd_cmd(0x32)
-    lcd_cmd(0x28)
-    lcd_cmd(0x0C)
-    lcd_cmd(0x06)
-    lcd_cmd(0x01)
-    time.sleep(0.005)
-
-def lcd_move(row, col):
-    addr_map = [0x80, 0xC0]
-    lcd_cmd(addr_map[row] + col)
-
-def lcd_print(text):
-    for char in text:
-        lcd_data(ord(char))
-
-# ==== Run Test ====
-lcd_init()
-
-block = chr(255)
-
-lcd_move(0, 4)
-lcd_print(block * 8)
-
-lcd_move(1, 4)
-lcd_print(block * 8)
+void loop() {
+  // 1. Clear the trigPin to ensure a clean pulse
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  
+  // 2. Send a 10-microsecond HIGH pulse to trigger the sensor
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // 3. Read the echoPin (returns the sound wave travel time in microseconds)
+  duration = pulseIn(echoPin, HIGH);
+  
+  // 4. Calculate the distance in centimeters
+  // Speed of sound is ~0.034 cm/microsecond. Divide by 2 for the round trip.
+  distance = duration * 0.034 / 2;
+  
+  // Print distance to Serial Monitor to help you test and troubleshoot
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  
+  // 5. Trigger the vibrator logic
+  // We check if distance > 0 to filter out occasional sensor errors
+  if (distance > 0 && distance <= 60) {
+    digitalWrite(vibratorPin, HIGH); // Turn ON the vibrator
+  } else {
+    digitalWrite(vibratorPin, LOW);  // Turn OFF the vibrator
+  }
+  
+  // Short delay before the next loop to keep the sensor stable
+  delay(100);
+}

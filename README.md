@@ -68,8 +68,9 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-[Video Demo](https://youtube.com/)
-[Marketing Video](https://youtube.com/)
+Learn how to use the POLE with our [video demo!](https://youtube.com/)
+
+Watch our [Marketing Video!](https://youtube.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

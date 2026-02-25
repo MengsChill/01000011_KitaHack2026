@@ -26,7 +26,7 @@
     <br />
     <a href="https://github.com/MengsChill/01000011_KitaHack2026">View Demo</a>
     &middot;
-    <a href="hhttps://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>

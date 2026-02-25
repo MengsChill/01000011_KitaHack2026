@@ -1,10 +1,3 @@
-<a id="readme-top"></a>
-
-[![Contributors][contributors-url]
-[![Issues][issues-shield]][issues-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">

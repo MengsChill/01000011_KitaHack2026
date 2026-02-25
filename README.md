@@ -1,5 +1,5 @@
 <a id="readme-top"></a>
-<div alighn="center">
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]

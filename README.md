@@ -105,21 +105,6 @@ This project was a collaborative effort by the following members:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTACT -->
-## Contact
-
-Choong Jun Zac - [@your_twitter](https://twitter.com/your_username) - noteethme@gmail.com
-
-Oh Chu Meng - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Teoh Yue Wen - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Jaccob Chin Sing Hung - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/MengsChill/01000011_KitaHack2026/graphs/contributors

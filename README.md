@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/POLELogo.jpeg" alt="Logo" width="800" height="800">
+    <img src="images/POLELogo.jpeg" alt="Logo" width="1280" height="720">
   </a>
 
   <h3 align="center">POLE</h3>

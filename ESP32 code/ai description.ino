@@ -63,7 +63,7 @@ void AnalyzeImage(String base64Image) {
 
     // Dynamic payload building
     String jsonPayload = "{\"contents\": [{\"parts\": [";
-    jsonPayload += "{\"text\": \"What is in this image? Describe it briefly.\"},";
+    jsonPayload += "{\"text\": \"What is in this image? Describe it thoroughly, if there is any text read the text.\"},";
     jsonPayload += "{\"inlineData\": {\"mimeType\": \"image/jpeg\", \"data\": \"" + base64Image + "\"}}";
     jsonPayload += "]}]}";
 

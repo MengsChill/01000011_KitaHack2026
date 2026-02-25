@@ -84,9 +84,7 @@ POLE is still a work in progress, help us by proposing features you would like t
 - [x] AI integration to give a detailed description 
 - [ ] Text to speech locally
 - [ ] Locally hosted AI to remove the reliance on internet
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] Real Time AI object detection 
 
 See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues) for a full list of proposed features (and known issues).
 

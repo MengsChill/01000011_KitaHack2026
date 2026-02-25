@@ -126,8 +126,12 @@ See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues
 
 
 <!-- CONTRIBUTING -->
-## Contributions
-
+# Contributors
+This project was a collaborative effort by the following members:
+* **AI integration, ESP32 programming & Testing: [Choong Jun Zac](https://github.com/ishtardsama)**
+* **Mobile App development(Backend/Frontend Design), UX & Testing: [Oh Chu Meng](https://github.com/MengsChill)**
+* **Electrical Engineering, Prototype Modeling & Testing: [Teoh Yue Wen](https://github.com/TealApples)**
+* **Budget allocation, Finance & Market Analysis: Jaccob Chin Sing Hung(No Github 😢)**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

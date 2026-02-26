@@ -42,6 +42,7 @@
 <div align="center">
     <img src="images/image.png" alt="product" width="300" height="1000">
   </a>
+</div>
 
 POLE innovates your basic old walking stick, designed to enhance mobility and independence for individuals with various physical challenges. Our smart walking cane provides users with a range of intelligent features and functionalities that revolutionise the traditional walking aid industry, such as obstacle detection with haptic feedback and descriptions with AI vision(eg. searching for dropped objects, reading from a menu, etc.) With these features, POLE enhances your daily journeys like never before. Stay connected and informed with real-time data such as distance travelled, weather updates and even live location services. Most importantly, always be alerted with the presence of obstacles via haptic feedback and a full detailed description of whats in front of you with a click of a button, providing a safer journey everywhere you go.
 

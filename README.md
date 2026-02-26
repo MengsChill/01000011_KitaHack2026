@@ -38,7 +38,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+<br/>
 <div align="center">
     <img src="image.png" alt="product" width="300" height="500">
   </a>

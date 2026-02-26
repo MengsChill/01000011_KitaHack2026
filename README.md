@@ -79,7 +79,8 @@ Watch our [marketing video.](https://youtube.com/)
 POLE is still a work in progress, help us by proposing features you would like to be seen implemented! [Propose Features](https://github.com/MengsChill/01000011_KitaHack2026/issues/new?labels=enhancement&template=feature-request---.md)
 
 - [x] Base model w/o AI integration
-- [x] AI integration to give a detailed description 
+- [x] AI integration to give a detailed description
+- [ ] Better app integration
 - [ ] Text to speech locally
 - [ ] Locally hosted AI to remove the reliance on internet
 - [ ] Real Time AI object detection 

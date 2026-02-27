@@ -7,7 +7,7 @@
 #define BLYNK_MAX_SENDBYTES 1200 
 #define BLYNK_TEMPLATE_ID "TMPL62jRU9Iz3"
 #define BLYNK_TEMPLATE_NAME "POLE camera"
-#define BLYNK_AUTH_TOKEN    "wNIy4cZTpT_9rQBmnBO-h6BZ3qD55KCg" 
+#define BLYNK_AUTH_TOKEN    "" 
 
 #include <WiFi.h>
 #include <BlynkSimpleEsp32_SSL.h>
@@ -17,9 +17,9 @@
 #include "esp_camera.h"
 #include "time.h"
 
-const char* ssid     = "Hotspot name";
-const char* password = "abcd1234";
-const String apiKey  = "AIzaSyCgVjZzw5FXp29DOHtY36cRHFcmCd8CzdQ //fuck create new one :/
+const char* ssid     = "";
+const char* password = "";
+const String apiKey  = "" 
 const String apiUrl  = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey;
 
 #define PWDN_GPIO_NUM -1

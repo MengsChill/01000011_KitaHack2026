@@ -7,7 +7,7 @@
 #define BLYNK_MAX_SENDBYTES 1200 
 #define BLYNK_TEMPLATE_ID "TMPL62jRU9Iz3"
 #define BLYNK_TEMPLATE_NAME "POLE camera"
-#define BLYNK_AUTH_TOKEN    "wNIy4cZTpT_9rQBmnBO-h6BZ3qD55KCg" //fuck
+#define BLYNK_AUTH_TOKEN    "wNIy4cZTpT_9rQBmnBO-h6BZ3qD55KCg" //fuck create new one :/
 
 #include <WiFi.h>
 #include <BlynkSimpleEsp32_SSL.h>

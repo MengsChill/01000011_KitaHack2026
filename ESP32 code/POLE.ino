@@ -1,13 +1,13 @@
 /*
   POLE AI Camera - FIXED & STABLE
   Hardware: ESP32-S3-N16R8 | OV3660
-  Output: Blynk V1 (Text-to-Speech Ready)
+  currently output to Blynk 
 */
 
 #define BLYNK_MAX_SENDBYTES 1200 
 #define BLYNK_TEMPLATE_ID "TMPL62jRU9Iz3"
 #define BLYNK_TEMPLATE_NAME "POLE camera"
-#define BLYNK_AUTH_TOKEN    "wNIy4cZTpT_9rQBmnBO-h6BZ3qD55KCg"
+#define BLYNK_AUTH_TOKEN    "wNIy4cZTpT_9rQBmnBO-h6BZ3qD55KCg" //fuck
 
 #include <WiFi.h>
 #include <BlynkSimpleEsp32_SSL.h>
@@ -17,13 +17,11 @@
 #include "esp_camera.h"
 #include "time.h"
 
-// --- Config ---
 const char* ssid     = "Hotspot name";
 const char* password = "abcd1234";
 const String apiKey  = "AIzaSyCgVjZzw5FXp29DOHtY36cRHFcmCd8CzdQ";
 const String apiUrl  = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey;
 
-// --- Hardware Pins (S3-N16R8) ---
 #define PWDN_GPIO_NUM -1
 #define RESET_GPIO_NUM -1
 #define XCLK_GPIO_NUM 15
@@ -42,7 +40,6 @@ const String apiUrl  = "https://generativelanguage.googleapis.com/v1beta/models/
 #define PCLK_GPIO_NUM 13
 #define BUTTON_PIN 0
 
-// --- Base64 Encoding Helper ---
 String encodeImageToBase64(uint8_t* data, size_t length) {
   static const char* table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
   String base64 = "";
@@ -57,7 +54,6 @@ String encodeImageToBase64(uint8_t* data, size_t length) {
   return base64;
 }
 
-// --- Gemini API Logic ---
 void AnalyzeImage(String base64Image) {
   WiFiClientSecure client;
   client.setInsecure(); 
@@ -79,15 +75,14 @@ void AnalyzeImage(String base64Image) {
       DynamicJsonDocument doc(4096); 
       deserializeJson(doc, http.getString());
       
-      // Fixed: Extract and clean the description string
+
       String description = doc["candidates"][0]["content"]["parts"][0]["text"];
-      description.replace("**", ""); // Remove bold marks
-      description.replace("* ", "- "); // Clean bullet points
+      description.replace("**", ""); 
+      description.replace("* ", "- "); 
       
       Serial.println("\n[AI Description]");
       Serial.println(description);
 
-      // --- SEND TO BLYNK (V1) ---
       Blynk.virtualWrite(V1, description); 
       Serial.println("[Blynk] Data sent to phone.");
       
@@ -112,18 +107,15 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
-  // Streamlined WiFi and Blynk Initialization
   Serial.println("[WiFi] Connecting...");
   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, password);
   WiFi.setSleep(false); 
 
-  // Time Sync for SSL
   configTime(0, 0, "pool.ntp.org");
   time_t now = time(nullptr);
   while (now < 100000) { delay(500); now = time(nullptr); }
   Serial.println("[Time] Synced!");
 
-  // Camera Configuration
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;

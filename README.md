@@ -1,4 +1,3 @@
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
     <img src="images/POLELogo.jpeg" alt="Logo" width="500" height="300">
@@ -16,9 +15,6 @@
   </p>
 </div>
 
-
-
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -34,9 +30,6 @@
   </ol>
 </details>
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 <br/>
 <div align="center">
@@ -68,45 +61,6 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-To get a local copy up and running, follow these steps to set up both the Hardware (ESP32) and the Mobile App.
-
-### 🛠️ Hardware Setup (ESP32)
-1.  **Open Code**: Open `ESP32 code/POLE.ino` in the **Arduino IDE**.
-2.  **Dependencies**: Install `Blynk` and `ArduinoJson` libraries from the Library Manager.
-3.  **Config**: Update your WiFi and API keys in the code:
-    ```cpp
-    const char* ssid = "YOUR_WIFI_NAME";
-    const char* password = "YOUR_WIFI_PASSWORD";
-    const String apiKey = "YOUR_GEMINI_API_KEY";
-    ```
-4.  **Flash**: Select **ESP32-S3 Dev Module**, enable **PSRAM**, and upload to your device.
-
-### 📱 Mobile App Setup
-1.  **Clone the repo**
-    ```sh
-    git clone https://github.com/MengsChill/01000011_KitaHack2026.git
-    cd smartstick_app
-    ```
-2.  **Install Dependencies**
-    ```sh
-    flutter pub get
-    ```
-3.  **Environment Setup**
-    *   Create a `.env` file from `.env.example`: `cp .env.example .env`
-    *   Add your **Firebase**, **Weather**, and **Google Maps** API keys to the `.env` file. (Note: The Google Maps key is automatically loaded for Android).
-4.  **Firebase Config**
-    *   Place `google-services.json` in `android/app/`.
-    *   Place `GoogleService-Info.plist` in `ios/Runner/`.
-5.  **Run the app**
-    ```sh
-    flutter run
-    ```
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 Learn how to use the POLE with our [video demo.](https://youtube.com/)
 
@@ -114,9 +68,6 @@ Watch our [marketing video.](https://youtube.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
 ## Roadmap
 
 POLE is still a work in progress, help us by proposing features you would like to be seen implemented!
@@ -136,7 +87,18 @@ See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues
 
 ## Getting Started
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy up and running, follow these steps to set up both the Hardware (ESP32) and the Mobile App.
+
+###Hardware Setup (ESP32)
+1.  **Open Code**: Open `ESP32 code/POLE.ino` in the **Arduino IDE**.
+2.  **Dependencies**: Install `blynk` and `ArduinoJson` from the Library Manager.
+3.  **Config**: Update your WiFi and API keys in the code:
+    ```cpp
+    const char* ssid = "YOUR_WIFI_NAME";
+    const char* password = "YOUR_WIFI_PASSWORD";
+    const String apiKey = "YOUR_GEMINI_API_KEY";
+    ```
+4.  **Flash**: Select **ESP32-S3 Dev Module**, enable **PSRAM**, and upload to your device.
 
 ###  Mobile App Setup
 1.  **Clone the repo**
@@ -167,12 +129,11 @@ To get a local copy up and running, follow these simple steps.
 * [Dart SDK](https://dart.dev/get-started/sdk)
 * A Firebase account
 
-<!-- TECHNICAL IMPLEMENTATION -->
 ## 🛠️ Technical Implementation
 
 POLE combines high-performance mobile development with edge AI and IoT to create a seamless assistive experience.
 
-### 🌟 Powered by Google Tools
+### Powered by Google Tools
 *   **Flutter & Dart**: Cross-platform frontend for high-performance, consistent UI across iOS and Android.
 *   **Gemini 1.5 Flash**: Orchestrates real-time image analysis directly on the hardware for lightning-fast obstacle description.
 *   **Firebase Ecosystem**:
@@ -181,32 +142,29 @@ POLE combines high-performance mobile development with edge AI and IoT to create
     *   **Firebase Storage**: Secure hosting for the AI-captured environment snapshots.
 *   **Google Maps Platform**: Precise real-time tracking and location history visualization for caregivers.
 
-### ⚙️ The Ecosystem
-1.  **The Stick (Edge AI)**: An **ESP32-S3** captures images which are processed by **Gemini 1.5 Flash** to generate natural language descriptions of the environment.
+### The Ecosystem
+1.  **POLE (Edge AI)**: An **ESP32-S3** captures images which are processed by **Gemini 1.5 Flash** to generate natural language descriptions of the environment.
 2.  **Communication (Blynk)**: Uses the Blynk IoT bridge to transmit hardware data (distance, AI descriptions, status) securely to the cloud.
 3.  **The Mobile App**: A Flutter-based dashboard that aggregates sensor data, displays the Google Map, and provides real-time notifications and weather updates via **OpenWeather API**.
 4.  **Caregiver Sync**: Real-time pairing system allows family members to monitor the user’s safety and location history instantly via Firestore listeners.
 
-<!-- IMPLEMENTATION, INNOVATION, AND CHALLENGES -->
-## 🔍 Implementation, Innovation, and Challenges
+## Implementation, Innovation, and Challenges
 
-### 🚀 Innovation: AI on the Edge
+### Innovation: AI on the Edge
 Unlike traditional assistive tools that rely on a phone's camera, POLE brings **Edge AI** directly to the walking stick. By integrating **Gemini 1.5 Flash** with an **ESP32-S3**, we created a device that can "see" and "describe" the environment with human-like detail, providing a revolutionary level of independence for the visually impaired.
 
-### 🏗️ Implementation Strategy
+### Implementation Strategy
 The project follows a modular architecture:
 *   **Hardware Layer**: Low-level C++ code managing sensor interrupts and AI image capture.
 *   **IoT Bridge**: A secure data tunnel using Blynk to ensure real-time communication without complex server management.
 *   **Mobile Layer**: A Flutter app acting as a high-level control center for both the user and their caregiver.
 *   **Security First**: Implementation of environment-based configuration for all sensitive API keys (Google Maps, Firebase, Weather).
 
-### ⚡ Challenges Faced & Overcome
+### Challenges Faced & Overcome
 1.  **Memory Constraints**: The ESP32-S3 has limited PSRAM. We optimized the AI image capture and encoding process to ensure high-quality images could be sent to Gemini without crashing the hardware.
 2.  **Real-Time Data Sync**: To ensure caregiver tracking was accurate, we implemented a custom polling and Firestore listener system to balance battery life with real-time updates.
 3.  **Security in Open Source**: We faced a challenge in keeping our private API keys secure for the hackathon. We overcame this by building a custom `.env` loading logic for our Flutter app and securing our `.gitignore`.
 
-   
-<!-- CONTRIBUTING -->
 # Contributors
 This project was a collaborative effort by the following members:
 * **AI integration, ESP32 programming & Testing: Choong Jun Zac [GitHub](https://github.com/ishtardsama), [Email](noteethme@gmail.com)**
@@ -216,7 +174,6 @@ This project was a collaborative effort by the following members:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- MARKDOWN LINKS & IMAGES -->
 [contributors-url]: https://github.com/MengsChill/01000011_KitaHack2026/graphs/contributors
 [issues-url]: https://github.com/MengsChill/01000011_KitaHack2026/issues
 [product-screenshot]: images/screenshot.png

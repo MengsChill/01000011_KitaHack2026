@@ -167,6 +167,26 @@ To get a local copy up and running, follow these simple steps.
 * [Dart SDK](https://dart.dev/get-started/sdk)
 * A Firebase account
 
+<!-- TECHNICAL IMPLEMENTATION -->
+## 🛠️ Technical Implementation
+
+POLE combines high-performance mobile development with edge AI and IoT to create a seamless assistive experience.
+
+### 🌟 Powered by Google Tools
+*   **Flutter & Dart**: Cross-platform frontend for high-performance, consistent UI across iOS and Android.
+*   **Gemini 1.5 Flash**: Orchestrates real-time image analysis directly on the hardware for lightning-fast obstacle description.
+*   **Firebase Ecosystem**:
+    *   **Authentication**: Secure user and caregiver login.
+    *   **Cloud Firestore**: Real-time synchronization of stick status, GPS logs, and pairing data.
+    *   **Firebase Storage**: Secure hosting for the AI-captured environment snapshots.
+*   **Google Maps Platform**: Precise real-time tracking and location history visualization for caregivers.
+
+### ⚙️ The Ecosystem
+1.  **The Stick (Edge AI)**: An **ESP32-S3** captures images which are processed by **Gemini 1.5 Flash** to generate natural language descriptions of the environment.
+2.  **Communication (Blynk)**: Uses the Blynk IoT bridge to transmit hardware data (distance, AI descriptions, status) securely to the cloud.
+3.  **The Mobile App**: A Flutter-based dashboard that aggregates sensor data, displays the Google Map, and provides real-time notifications and weather updates via **OpenWeather API**.
+4.  **Caregiver Sync**: Real-time pairing system allows family members to monitor the user’s safety and location history instantly via Firestore listeners.
+
    
 <!-- CONTRIBUTING -->
 # Contributors

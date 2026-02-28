@@ -114,6 +114,7 @@ To get a local copy up and running, follow these simple steps.
     *   Place [google-services.json](cci:7://file:///Users/cm/smartstick_app/android/app/google-services.json:0:0-0:0) in `android/app/`.
     *   Place `GoogleService-Info.plist` in `ios/Runner/`.
 5.  **Run the app**
+    Run on a connected device or emulator
     ```sh
     flutter run
     ```
@@ -123,29 +124,6 @@ To get a local copy up and running, follow these simple steps.
 * [Flutter SDK](https://docs.flutter.dev/get-started/install) (v3.10.4 or higher)
 * [Dart SDK](https://dart.dev/get-started/sdk)
 * A Firebase account
-
-### Installation
-
-1. **Clone the repo**
-   ```sh
-   git clone https://github.com/MengsChill/01000011_KitaHack2026.git
-
-2. **Install Flutter dependencies**
-    flutter pub get
-
-3. **Environment Setup**
-   - Copy the .env.example file to a new file named .env:
-   cp .env.example .env
-   - Open .env and add your API keys (Weather API, etc.).
-
-4. **Firebase Configuration**
-   - Place your google-services.json in android/app/.
-   - Place your GoogleService-Info.plist in ios/Runner/.
-  
-5. **Run the app**
-
-   # Run on a connected device or emulator
-    flutter run
 
    
 <!-- CONTRIBUTING -->

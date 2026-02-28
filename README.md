@@ -48,13 +48,13 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 * [![Dart][Dart.dev]][Dart-url]
 * [![Flutter][Flutter.dev]][Flutter-url]
 * [![Firebase][Firebase.google.com]][Firebase-url]
-* [! [Python] [Python.org]][Python-url]
 * [![Shell][Shell.sh]][Shell-url]
-* [! [YAML][YAML.org]] [YAML-url]
-* [! [JSON] [JSON.org]] [JSON-url]
-* [! [Markdown] [Markdown.org]] [Markdown-url]
-* [! [Kotlin] [Kotlin.lang]] [Kotlin-url]
-* [! [Java] [Java.com]][Java-url]
+* [![YAML][YAML.org]][YAML-url]
+* [![JSON][JSON.org]][JSON-url]
+* [![Markdown][Markdown.org]][Markdown-url]
+* [![Kotlin][Kotlin.lang]][Kotlin-url]
+* [![Java][Java.com]][Java-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -201,24 +201,19 @@ This project was a collaborative effort by the following members:
 [Flutter-url]: https://flutter.dev/
 [Firebase.google.com]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
 [Firebase-url]: https://firebase.google.com/
-[Python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
-[Python-url]: https://www.python.org/
 
+[Firebase.google.com]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
+[Firebase-url]: https://firebase.google.com/
 [Shell.sh]: https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white
 [Shell-url]: https://www.gnu.org/software/bash/
-
 [YAML.org]: https://img.shields.io/badge/YAML-CB171E?style=for-the-badge&logo=yaml&logoColor=white
 [YAML-url]: https://yaml.org/
-
 [JSON.org]: https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white
 [JSON-url]: https://www.json.org/
-
 [Markdown.org]: https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white
-[Markdown-url]: https://www.markdownguide.org/
-
+[Markdown-url]: https://daringfireball.net/projects/markdown/
 [Kotlin.lang]: https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white
 [Kotlin-url]: https://kotlinlang.org/
-
 [Java.com]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/
 

@@ -93,8 +93,39 @@ See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Getting Started
 
+To get a local copy up and running, follow these simple steps.
 
+### Prerequisites
+* [Flutter SDK](https://docs.flutter.dev/get-started/install) (v3.10.4 or higher)
+* [Dart SDK](https://dart.dev/get-started/sdk)
+* A Firebase account
+
+### Installation
+
+1. **Clone the repo**
+   ```sh
+   git clone https://github.com/MengsChill/01000011_KitaHack2026.git
+
+2. **Install Flutter dependencies**
+    flutter pub get
+
+3. **Environment Setup**
+   - Copy the .env.example file to a new file named .env:
+   cp .env.example .env
+   - Open .env and add your API keys (Weather API, etc.).
+
+4. **Firebase Configuration**
+   - Place your google-services.json in android/app/.
+   - Place your GoogleService-Info.plist in ios/Runner/.
+  
+5. **Run the app**
+
+   # Run on a connected device or emulator
+    flutter run
+
+   
 <!-- CONTRIBUTING -->
 # Contributors
 This project was a collaborative effort by the following members:

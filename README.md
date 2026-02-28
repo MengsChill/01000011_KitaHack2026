@@ -46,6 +46,8 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 ### Built With
 * [![React][React.js]][React-url]
 * [![Dart][Dart.dev]][Dart-url]
+* [![Python][Python.org]][Python-url]
+* [![C++][Cpp.com]][Cpp-url]
 * [![Flutter][Flutter.dev]][Flutter-url]
 * [![Firebase][Firebase.google.com]][Firebase-url]
 * [![Shell][Shell.sh]][Shell-url]
@@ -201,7 +203,6 @@ This project was a collaborative effort by the following members:
 [Flutter-url]: https://flutter.dev/
 [Firebase.google.com]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
 [Firebase-url]: https://firebase.google.com/
-
 [Firebase.google.com]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
 [Firebase-url]: https://firebase.google.com/
 [Shell.sh]: https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white
@@ -216,4 +217,7 @@ This project was a collaborative effort by the following members:
 [Kotlin-url]: https://kotlinlang.org/
 [Java.com]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
 [Java-url]: https://www.java.com/
-
+[Python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[Python-url]: https://www.python.org/
+[Cpp.com]: https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white
+[Cpp-url]: https://isocpp.org/

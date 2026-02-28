@@ -8,6 +8,13 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val envFile = rootProject.file("../.env")
+val envProperties = java.util.Properties()
+if (envFile.exists()) {
+    envProperties.load(java.io.FileInputStream(envFile))
+}
+val googleMapsApiKey = envProperties.getProperty("GOOGLE_MAPS_API_KEY") ?: "YOUR_GOOGLE_MAPS_API_KEY_HERE"
+
 android {
     namespace = "com.example.smartstick_app"
     compileSdk = flutter.compileSdkVersion
@@ -31,6 +38,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] = googleMapsApiKey
     }
 
     buildTypes {

@@ -62,8 +62,49 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+* [![Dart][Dart.dev]][Dart-url]
+* [![Flutter][Flutter.dev]][Flutter-url]
+* [![Firebase][Firebase.google.com]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running, follow these steps to set up both the Hardware (ESP32) and the Mobile App.
+
+### 🛠️ Hardware Setup (ESP32)
+1.  **Open Code**: Open `ESP32 code/POLE.ino` in the **Arduino IDE**.
+2.  **Dependencies**: Install `Blynk` and `ArduinoJson` libraries from the Library Manager.
+3.  **Config**: Update your WiFi and API keys in the code:
+    ```cpp
+    const char* ssid = "YOUR_WIFI_NAME";
+    const char* password = "YOUR_WIFI_PASSWORD";
+    const String apiKey = "YOUR_GEMINI_API_KEY";
+    ```
+4.  **Flash**: Select **ESP32-S3 Dev Module**, enable **PSRAM**, and upload to your device.
+
+### 📱 Mobile App Setup
+1.  **Clone the repo**
+    ```sh
+    git clone https://github.com/MengsChill/01000011_KitaHack2026.git
+    cd smartstick_app
+    ```
+2.  **Install Dependencies**
+    ```sh
+    flutter pub get
+    ```
+3.  **Environment Setup**
+    *   Create a `.env` file from `.env.example`: `cp .env.example .env`
+    *   Add your **Firebase**, **Weather**, and **Google Maps** API keys to the `.env` file. (Note: The Google Maps key is automatically loaded for Android).
+4.  **Firebase Config**
+    *   Place `google-services.json` in `android/app/`.
+    *   Place `GoogleService-Info.plist` in `ios/Runner/`.
+5.  **Run the app**
+    ```sh
+    flutter run
+    ```
+
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -161,3 +202,9 @@ This project was a collaborative effort by the following members:
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Dart.dev]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white
+[Dart-url]: https://dart.dev/
+[Flutter.dev]: https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white
+[Flutter-url]: https://flutter.dev/
+[Firebase.google.com]: https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white
+[Firebase-url]: https://firebase.google.com/

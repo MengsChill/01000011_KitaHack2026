@@ -59,3 +59,7 @@ ios/DerivedData/
 
 # Environment variables
 .env
+
+# Firebase configuration files
+**/google-services.json
+**/GoogleService-Info.plist

@@ -66,7 +66,7 @@ POLE is still a work in progress, help us by proposing features you would like t
 
 - [x] Base model w/o AI integration
 - [x] AI integration to give a detailed description
-- [ ] Better app integration
+- [ ] Better app integration (currently using Blynk for AI description output :/)
 - [ ] Text to speech locally
 - [ ] Locally hosted AI to remove the reliance on internet
 - [ ] Real Time AI object detection 

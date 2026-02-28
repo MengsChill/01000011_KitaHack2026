@@ -97,7 +97,7 @@ See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues
 
 To get a local copy up and running, follow these simple steps.
 
-### 📱 Mobile App Setup
+###  Mobile App Setup
 1.  **Clone the repo**
     ```sh
     git clone https://github.com/MengsChill/01000011_KitaHack2026.git

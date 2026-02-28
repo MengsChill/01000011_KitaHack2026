@@ -97,6 +97,28 @@ See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues
 
 To get a local copy up and running, follow these simple steps.
 
+### 📱 Mobile App Setup
+1.  **Clone the repo**
+    ```sh
+    git clone https://github.com/MengsChill/01000011_KitaHack2026.git
+    cd smartstick_app
+    ```
+2.  **Install Dependencies**
+    ```sh
+    flutter pub get
+    ```
+3.  **Environment Setup**
+    *   Create a [.env](cci:7://file:///Users/cm/smartstick_app/.env:0:0-0:0) file from [.env.example](cci:7://file:///Users/cm/smartstick_app/.env.example:0:0-0:0): `cp .env.example .env`
+    *   Add your **Firebase** and **Weather** API keys to the [.env](cci:7://file:///Users/cm/smartstick_app/.env:0:0-0:0) file.
+4.  **Firebase Config**
+    *   Place [google-services.json](cci:7://file:///Users/cm/smartstick_app/android/app/google-services.json:0:0-0:0) in `android/app/`.
+    *   Place `GoogleService-Info.plist` in `ios/Runner/`.
+5.  **Run the app**
+    ```sh
+    flutter run
+    ```
+
+
 ### Prerequisites
 * [Flutter SDK](https://docs.flutter.dev/get-started/install) (v3.10.4 or higher)
 * [Dart SDK](https://dart.dev/get-started/sdk)

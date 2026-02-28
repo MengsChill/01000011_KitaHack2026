@@ -114,6 +114,7 @@ To get a local copy up and running, follow these simple steps.
     *   Place [google-services.json](cci:7://file:///Users/cm/smartstick_app/android/app/google-services.json:0:0-0:0) in `android/app/`.
     *   Place `GoogleService-Info.plist` in `ios/Runner/`.
 5.  **Run the app**
+   
     Run on a connected device or emulator
     ```sh
     flutter run

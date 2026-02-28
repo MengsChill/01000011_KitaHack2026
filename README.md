@@ -109,6 +109,10 @@ This project was a collaborative effort by the following members:
 [contributors-url]: https://github.com/MengsChill/01000011_KitaHack2026/graphs/contributors
 [issues-url]: https://github.com/MengsChill/01000011_KitaHack2026/issues
 [product-screenshot]: images/screenshot.png
+[Dart.dev]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white
+[Dart-url]: https://dart.dev/
+[Flutter.dev]: https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white
+[Flutter-url]: https://flutter.dev/
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

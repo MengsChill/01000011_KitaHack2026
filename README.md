@@ -59,9 +59,9 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
-Learn how to use the POLE with our [video demo.](https://youtube.com/)
+Learn how to use the POLE with our [video demo (unavailable rn :(.)]()
 
-Watch our [marketing video.](https://youtube.com/)
+Watch our [marketing video.](https://youtu.be/KioN7g3V8Qs)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -173,7 +173,6 @@ This project was a collaborative effort by the following members:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[contributors-url]: https://github.com/MengsChill/01000011_KitaHack2026/graphs/contributors
 [issues-url]: https://github.com/MengsChill/01000011_KitaHack2026/issues
 [product-screenshot]: images/screenshot.png
 [Dart.dev]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white

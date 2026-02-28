@@ -52,6 +52,7 @@ POLE innovates your basic old walking stick, designed to enhance mobility and in
 
 ### Built With
 
+* [![Dart][Dart-badge]][Dart-url]
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]

@@ -76,7 +76,9 @@ POLE is still a work in progress, help us by proposing features you would like t
 - [ ] Better app integration (currently using Blynk for AI description output :/)
 - [ ] Text to speech locally
 - [ ] Locally hosted AI to remove the reliance on internet
-- [ ] Real Time AI object detection 
+- [ ] Real Time AI object detection
+- [ ] Integration with Google Maps and indoor positioning systems
+- [ ] Real-time facial recognition of friends and family
 
 See the [open issues](https://github.com/MengsChill/01000011_KitaHack2026/issues) for a full list of proposed features (and known issues).
 
